@@ -3,11 +3,10 @@ from flask_pymongo import PyMongo
 import pymongo
 import requests
 from logging import log
-import os
+
 #initialisation du server flask
 app = Flask(__name__)
 
-port = int(os.environ.get('PORT', 8000))
 #configuration de la bdd avec mongo
 #configuration et connection à la bdd
 app.config["MONGO_URI"] = "mongodb://localhost:27017/projectapi"
@@ -95,4 +94,4 @@ def pagination():
 #méthode qui permet de tester notre api
 #condition pour dire que le server est lancé
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port = port, debug=True)
+    app.run(debug=True)
