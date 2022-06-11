@@ -13,7 +13,7 @@ app.config["MONGO_URI"] = "mongodb://localhost:27017/projectapi"
 mongo = PyMongo(app)
 
 #définir une route pour voir si l'api fonctionne
-@app.route('/postdata', methods=['POST'])
+@app.route('/postdata', method=['POST'])
 def create_users():
     currentCollection = mongo.db.data
     #receiving data
@@ -27,7 +27,7 @@ def create_users():
     currentCollection.insert_one({'level_0': level_0, 'index' : index,'Player' : Player, 'Position': Position, 'Age': Age, 'Teams':Teams})
     return jsonify({'level_0': level_0, 'index' : index, 'Player' : Player, 'Position': Position, 'Age': Age, 'Teams': Teams})
 #methode get
-@app.route('/allplayers', methods=['GET'])
+@app.route('/allplayers', method=['GET'])
 def getAll():
     #log.basicConfig(level=log.DEBUG, format='%(asctime)s %(levelname)s:\n%(message)s\n')
     board = list()
@@ -53,7 +53,7 @@ def delete_data(Player):
     return redirect(url_for('getAll')) 
 
 #méthode qui va nous permettre de pouvoir modifier certaine données
-@app.route('/updatedata/<Player>', methods=['PUT'])
+@app.route('/updatedata/<Player>', method=['PUT'])
 def update_data(Player):
     currentCollection = mongo.db.data
     #la requête que nous voulons
@@ -70,7 +70,7 @@ def update_data(Player):
     #on redirige le résultat vers l'ensemble de nos données
     #return redirect(url_for('getAll'))
 #méthode qui permet de paginer les resultats
-@app.route('/allplayers/pagination/', methods=['GET'])
+@app.route('/allplayers/pagination/', method=['GET'])
 def pagination():
     collectionData = mongo.db.data
     #on pose une limite de résultat à pas dépassé

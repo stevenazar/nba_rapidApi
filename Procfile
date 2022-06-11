@@ -1,1 +1,1 @@
-web guincorn application:app --preload
+web: guincorn processWebhook:app --log-file -
